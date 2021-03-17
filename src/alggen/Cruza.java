@@ -16,37 +16,32 @@ public class Cruza {
     public void Cruza(){
     }
     
-    public  ArrayList<Gen_Fen_Fit> op_cruza ( ArrayList<Gen_Fen_Fit>  crom,int [] mask){
+    public static Gen_Fen_Fit op_cruza ( Gen_Fen_Fit gen1, Gen_Fen_Fit gen2,int [] mask){
         
-       ArrayList<Gen_Fen_Fit>  Entradas = new ArrayList<>() ;
-       Entradas.add(crom.get((int)Math.random()*(crom.size() - 0) + 0));
-       Entradas.add(crom.get((int)Math.random()*(crom.size() - 0) + 0));
-        
-                         
-                    int c1[] = crom.get(0).genotipo ;
-                    int c2[] = crom.get(1).genotipo ;
-                    int ac1[] = new int[c1.length] ;
-                    int ac2[] = new int[c1.length] ;
-                    
-                    for(int i=0;i<mask.length;i++){
-                         if(mask[i]==1){
-                            ac1[i]=c1[i] ;
-                            ac2[i]=c2[i] ;
+        int c1 [] = new int[mask.length];
+        int c2 [] = new int[mask.length];
 
-                         }else{
-                            ac1[i]=c2[i] ;
-                            ac2[i]=c1[i] ;
+        // recorremos la maskara de cruza 
+        for (int b=0; b < mask.length; b++){
+            if(mask[b]==1){
+                c1[b] = gen1.getGenotipo()[b];
+                c2[b] = gen2.getGenotipo()[b];
+            } else{
+                c1[b]=gen2.getGenotipo()[b];
+                c2[b] = gen1.getGenotipo()[b];
 
-                                    }
-                 }
-             Gen_Fen_Fit aux = new Gen_Fen_Fit(ac1);       
-             Gen_Fen_Fit aux2 = new Gen_Fen_Fit(ac2);       
+            }
+        }
+             Gen_Fen_Fit aux = new Gen_Fen_Fit(c1);       
+             Gen_Fen_Fit aux2 = new Gen_Fen_Fit(c2);       
 
-             
-             res.add(aux);
-             res.add(aux2);
+    
+        if (aux.getFitness()>aux2.getFitness()){
+            return aux;
+        } else {
+            return aux2;
+        }
           
         
-     return res;
-    }
+     }
 }

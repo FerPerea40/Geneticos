@@ -6,87 +6,83 @@
 package alggen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
  * @author Dell
  */
 public class Gen_Fen_Fit {
-    int genotipo[];
-    int fenotipo;
-    double fit;
-    
-       public Gen_Fen_Fit(){
-    
-    }
-    public Gen_Fen_Fit(int[] gen){
-      genotipo = gen;
-      fenotipo = bin_dec(gen);
-      fit = cal_fit(fenotipo);
-    }
-    
-    public static int bin_dec(int[] gen){
-     
-        int n_bits = gen.length;
-        int total=0;
-        
-        for(int i=0;i<n_bits;i++){
-            total+=  Math.pow(2,i)*gen[i];
-        System.out.println("haha = "+ total);
-        
-        }
-    return total;
-    
-    }
-    public static double cal_fit(int fen){
-    
-   return Math.sin(fen);
-    }
+   private int genotipo[];
+    private long fenotipo;
+    private long fitness;
 
-    public int[] getGenotipo() {
+    public int[]getGenotipo(){
         return genotipo;
     }
-
-    public void setGenotipo(int[] genotipo) {
-        this.genotipo = genotipo;
+    public void setGenotipo(int[]genotipo){
+        this.genotipo =genotipo;
     }
-
-    public int getFenotipo() {
+    public long getFenotipo(){
         return fenotipo;
     }
-
-    public void setFenotipo(int fenotipo) {
-        this.fenotipo = fenotipo;
+    public void setFenotipo(int fenotipo){
+        this.fenotipo =fenotipo;
+    }
+    public long getFitness(){
+        return fitness;
+    }
+    public void setFitness(long fitness){
+        this.fitness =fitness;
     }
 
-    public double getFit() {
-        return fit;
+    public Gen_Fen_Fit (int n){
+        this.genotipo = new int[n];
+        inicializarAleatoriamente();
+        calcularFitness();
     }
 
-    public void setFit(double fit) {
-        this.fit = fit;
+    public Gen_Fen_Fit (int aux[]){
+        this.genotipo = aux.clone();
+        calcularFitness();
     }
-  
+
+    public void calcularFitness(){
+        calcularFenotipo();
+        // evaluar el fenotipo en la función deseada (2x2+x+1)
+        this.fitness = (2*this.fenotipo*this.fenotipo)+this.fenotipo+1;
+    }
+
+    private void calcularFenotipo(){
+        // decodificación del genotipo
+        // convertir el arreglo de bits a base 10
+      this.fenotipo = 0;
+      for(int x=0; x<this.genotipo.length;x++){
+          if (this.genotipo[x]==1){
+            this.fenotipo+= Math.pow(2,this.genotipo.length-1-x);
+          }
+      }
+             
+    }
+
+    private void inicializarAleatoriamente(){
+        Random ran = new Random();
+        for(int x=0; x<this.genotipo.length;x++){
+            this.genotipo[x]= ran.nextInt(2);
+        }
+    }
+
+    @Override
+    public String toString() {
+        String aux = ""+this.fenotipo+": "+this.fitness;
+        return aux;
+    }
+
   
     
     public static void main(String args[]){
-        int[] bin = {1,1,1,0};
-       Gen_Fen_Fit gff = new Gen_Fen_Fit(bin);
-      // System.out.print(gff.genotipo);
-       System.out.println(gff.fenotipo);
-       System.out.println(gff.fit);
-       
-       Gen_Fen_Fit gen1 = new Gen_Fen_Fit(new int[]{1,1,1,0,1,0,0,1,0,0,0});
-       Gen_Fen_Fit gen2 = new Gen_Fen_Fit(new int[]{0,0,0,0,1,0,1,0,1,0,1});
-       
- ArrayList<Gen_Fen_Fit>  res = new ArrayList<>();
- res.add(gen2);
- res.add(gen1);
- 
-       Cruza c = new Cruza();
-       int [] mask = new int[]{1,0,0,1,1,0,1,0,0,1,1};
-       
-       c.op_cruza(res, mask);
-       System.out.print("gg");
+      Generaciones G = new Generaciones(10,2,10,8);
+      G.evolucionar();
+      
     }       
 }
