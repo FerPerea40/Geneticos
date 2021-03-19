@@ -81,7 +81,7 @@ public class Gen_Fen_Fit {
   
     
     public static void main(String args[]){
-      Generaciones G = new Generaciones(10,2,10,8);
+      Generaciones G = new Generaciones(10,3,10,8);
       G.evolucionar();
       
     }       
