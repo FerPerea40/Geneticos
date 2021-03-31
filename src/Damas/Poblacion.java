@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alggen;
+package Damas;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Poblacion {
     
- private LinkedList<Gen_Fen_Fit> poblacion;
+ private LinkedList<Individuo> poblacion;
     private int i;
     private int tam;
 
@@ -25,10 +25,10 @@ public class Poblacion {
         inicializarAleatorimente();
     }
 
-    public Poblacion(LinkedList<Gen_Fen_Fit> muestra, int i){
+    public Poblacion(LinkedList<Individuo> muestra, int i){
         this.poblacion = new LinkedList<>();
         for(int x=0;x<muestra.size();x++){
-            this.poblacion.add(new Gen_Fen_Fit(muestra.get(x).getGenotipo()));
+            this.poblacion.add(new Individuo(muestra.get(x).getGenotipo()));
         }
     }
 
@@ -39,8 +39,8 @@ public class Poblacion {
 
     public Poblacion(Poblacion n){
         this.poblacion = new LinkedList<>();
-        for(Gen_Fen_Fit aux: n.getPoblacion()){
-            this.poblacion.add(new Gen_Fen_Fit(aux.getGenotipo()));
+        for(Individuo aux: n.getPoblacion()){
+            this.poblacion.add(new Individuo(aux.getGenotipo()));
 
         }
 
@@ -49,14 +49,14 @@ public class Poblacion {
     public void inicializarAleatorimente(){
 
        for(int x=0; x< this.i; x++){
-            this.poblacion.add(new Gen_Fen_Fit(this.tam));
+            this.poblacion.add(new Individuo(this.tam));
 
        }
 
     }
-    public LinkedList<Gen_Fen_Fit> generarMuestraAleatoria(double p){
+    public LinkedList<Individuo> generarMuestraAleatoria(double p){
         int c = (int)((this.i*p)/100);
-        LinkedList<Gen_Fen_Fit> muestra = new LinkedList<>();
+        LinkedList<Individuo> muestra = new LinkedList<>();
         int pa = 0;
         Random ran = new Random();
         for(int x=0; x<c;x++){
@@ -67,13 +67,13 @@ public class Poblacion {
      return muestra;
     }
 
-    public LinkedList<Gen_Fen_Fit> generarMuestraMejores(double p){
+    public LinkedList<Individuo> generarMuestraMejores(double p){
         int c = (int)((this.i*p)/100);
-        LinkedList<Gen_Fen_Fit> muestra = new LinkedList<>();
+        LinkedList<Individuo> muestra = new LinkedList<>();
      return muestra;
     }
    
-   public LinkedList<Gen_Fen_Fit> getPoblacion(){
+   public LinkedList<Individuo> getPoblacion(){
 
     return poblacion;
    }

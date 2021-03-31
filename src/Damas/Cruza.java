@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alggen;
+package Damas;
 
 import java.util.ArrayList;
 
@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * @author Dell
  */
 public class Cruza {
-        ArrayList<Gen_Fen_Fit>  res = new ArrayList<>() ;
+        ArrayList<Individuo>  res = new ArrayList<>() ;
     public void Cruza(){
     }
     
-    public static Gen_Fen_Fit op_cruza ( Gen_Fen_Fit gen1, Gen_Fen_Fit gen2,int [] mask){
+    public static Individuo op_cruza ( Individuo gen1, Individuo gen2,int [] mask){
         
         int c1 [] = new int[mask.length];
         int c2 [] = new int[mask.length];
@@ -31,11 +31,11 @@ public class Cruza {
 
             }
         }
-             Gen_Fen_Fit aux = new Gen_Fen_Fit(c1);       
-             Gen_Fen_Fit aux2 = new Gen_Fen_Fit(c2);       
+             Individuo aux = new Individuo(c1);       
+             Individuo aux2 = new Individuo(c2);       
 
     
-        if (aux.getFitness()>aux2.getFitness()){
+        if (aux.getFitness()<=aux2.getFitness()){
             return aux;
         } else {
             return aux2;

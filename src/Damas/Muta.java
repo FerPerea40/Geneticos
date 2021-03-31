@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alggen;
+package Damas;
 
 import java.util.Random;
 
@@ -12,16 +12,14 @@ import java.util.Random;
  * @author Dell
  */
 public class Muta {
-    public static void aplicarMutaAleatoria(Gen_Fen_Fit p){
+    public static void aplicarMutaAleatoria(Individuo p){
         Random ran = new Random();
         int pos = ran.nextInt(p.getGenotipo().length);
-        if(p.getGenotipo()[pos]==1){
-            p.getGenotipo()[pos]=0;
 
-        }else {
-            p.getGenotipo()[pos]=1;
-        }
-        p.calcularFitness();
+            p.getGenotipo()[pos]=  ran.nextInt(p.getGenotipo().length);;
+
+       
+        p.calcularFit();
 
     }
 }

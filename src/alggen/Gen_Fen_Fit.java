@@ -49,13 +49,10 @@ public class Gen_Fen_Fit {
 
     public void calcularFitness(){
         calcularFenotipo();
-        // evaluar el fenotipo en la función deseada (2x2+x+1)
         this.fitness = (2*this.fenotipo*this.fenotipo)+this.fenotipo+1;
     }
 
     private void calcularFenotipo(){
-        // decodificación del genotipo
-        // convertir el arreglo de bits a base 10
       this.fenotipo = 0;
       for(int x=0; x<this.genotipo.length;x++){
           if (this.genotipo[x]==1){
