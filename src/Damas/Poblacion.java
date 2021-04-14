@@ -25,7 +25,7 @@ public class Poblacion {
         inicializarAleatorimente();
     }
 
-    public Poblacion(LinkedList<Individuo> muestra, int i){
+    public Poblacion(LinkedList<Individuo> muestra){
         this.poblacion = new LinkedList<>();
         for(int x=0;x<muestra.size();x++){
             this.poblacion.add(new Individuo(muestra.get(x).getGenotipo()));
@@ -76,5 +76,15 @@ public class Poblacion {
    public LinkedList<Individuo> getPoblacion(){
 
     return poblacion;
+   }
+   
+   public int getFitnessTotal(){
+   int fitT=0;
+   
+   for(int i=0;i<poblacion.size();i++){
+    fitT+=poblacion.get(i).getFitness();
+   
+   }
+   return fitT;
    }
 }

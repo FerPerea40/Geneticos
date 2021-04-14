@@ -5,6 +5,7 @@
  */
 package Damas;
 
+import Archivo.CrearArchivo;
 import java.util.Random;
 
 
@@ -32,6 +33,7 @@ public class Generaciones {
         this.pMuta = pMuta;
         this.tamPob = tamPob;
         this.pobActual = new Poblacion(tamPob,tamg);
+        CrearArchivo c= new CrearArchivo(new Poblacion(tamPob,tamg).getPoblacion(),num_G,pMuta,tamPob,tamg);
         this.tamt=tamg;
     }
 
@@ -58,7 +60,7 @@ public class Generaciones {
                     mejor = new Individuo(hijo.getGenotipo());
                 }
             }
-            System.out.println("Generación #"+g+":"+mejor.toString());
+          //  System.out.println("Generación #"+g+":"+mejor.toString());
            
             gens[g] = mejor.getFitness();
             this.pobActual = new Poblacion(nueva);

@@ -134,36 +134,36 @@ public class Individuo {
     public static void main(String args[]){
         
        // Individuo i =  new Individuo();
-        
-            Generaciones gen = new Generaciones(100,.5,100,10);
-            gen.evolucionar();
-            Grafica graf = new Grafica("Comportamiento (100,.5,100,10)","Generación","Fitness");
-            graf.crearSerie("Datos : (100,.5,100,110)",gen.getGens());
-            graf.mostrarGrafica();
-            
-            Generaciones gen1 = new Generaciones(200,.2,400,25);
-            gen1.evolucionar();
-            Grafica graf1 = new Grafica("Comportamiento (200,.2,400,25)","Generación","Fitness");
-            graf1.crearSerie("Datos : (200,.2,400,25)",gen1.getGens());
-            graf1.mostrarGrafica();
-            
-             Generaciones gen2 = new Generaciones(1000,.2,500,100);
-            gen2.evolucionar();
-            Grafica graf2 = new Grafica("Comportamiento (000,.2,500,100)","Generación","Fitness");
-            graf2.crearSerie("Datos : (000,.2,500,100)",gen2.getGens());
-            graf2.mostrarGrafica();
-            
-             Generaciones gen3 = new Generaciones(2500,.1,400,150);
-            gen3.evolucionar();
-            Grafica graf3 = new Grafica("Comportamiento (2500,.1,400,150)","Generación","Fitness");
-            graf3.crearSerie("Datos : (2500,.1,400,150)",gen3.getGens());
-            graf3.mostrarGrafica();
-            
-             Generaciones gen4 = new Generaciones(10000,.05,1000,5000);
-            gen4.evolucionar();
-            Grafica graf4 = new Grafica("Comportamiento (10000,.05,1000,500)","Generación","Fitness");
-            graf4.crearSerie("Datos : (10000,.05,1000,5000)",gen4.getGens());
-            graf4.mostrarGrafica();
+        for(int i=0;i<10000;i++){
+            Generaciones gen = new Generaciones(100,.12,100,500);
+           // gen.evolucionar();
+           }
+////             Grafica graf = new Grafica("Comportamiento (100,.5,100,10)","Generación","Fitness");
+////            graf.crearSerie("Datos  : (100,.5,100,110)",gen.getGens());
+////            graf.mostrarGrafica();
+//            Generaciones gen1 = new Generaciones(200,.2,400,25);
+//            gen1.evolucionar();
+//            Grafica graf1 = new Grafica("Comportamiento (200,.2,400,25)","Generación","Fitness");
+//            graf1.crearSerie("Datos : (200,.2,400,25)",gen1.getGens());
+//            graf1.mostrarGrafica();
+//            
+//             Generaciones gen2 = new Generaciones(1000,.2,500,100);
+//            gen2.evolucionar();
+//            Grafica graf2 = new Grafica("Comportamiento (000,.2,500,100)","Generación","Fitness");
+//            graf2.crearSerie("Datos : (000,.2,500,100)",gen2.getGens());
+//            graf2.mostrarGrafica();
+//            
+//             Generaciones gen3 = new Generaciones(2500,.1,400,150);
+//            gen3.evolucionar();
+//            Grafica graf3 = new Grafica("Comportamiento (2500,.1,400,150)","Generación","Fitness");
+//            graf3.crearSerie("Datos : (2500,.1,400,150)",gen3.getGens());
+//            graf3.mostrarGrafica();
+//            
+//             Generaciones gen4 = new Generaciones(10000,.05,1000,5000);
+//            gen4.evolucionar();
+//            Grafica graf4 = new Grafica("Comportamiento (10000,.05,1000,500)","Generación","Fitness");
+//            graf4.crearSerie("Datos : (10000,.05,1000,5000)",gen4.getGens());
+//            graf4.mostrarGrafica();
            
     }       
 }
