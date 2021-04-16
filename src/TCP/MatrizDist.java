@@ -36,6 +36,7 @@ public class MatrizDist {
     }
     
     public void imprimirMat(){
+        System.out.println("Matriz de distancias");
     for (int i = 0; i < Matriz.length; i++) {
             for (int j = 0; j < Matriz.length; j++) {
  

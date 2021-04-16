@@ -49,24 +49,26 @@ public class IndividuoTCP {
         calcularFitness(mat);
     }
 
-    public IndividuoTCP(int aux[],int[][] mat) {
+    public IndividuoTCP(int aux[], int[][] mat) {
         this.genotipo = aux.clone();
         calcularFitness(mat);
     }
 
     public void calcularFitness(int[][] mat) {
-        this.fitness=0;
-          for(int j=1;j<mat.length;j++){
-             this.fitness += mat[this.genotipo[j-1]][this.genotipo[j]];
-             System.out.println("Sumado: "+mat[this.genotipo[j-1]][this.genotipo[j]]);
-     
-       }
-          this.fitness+=mat[this.genotipo[0]][this.genotipo[mat.length-1]];
-       System.out.println("Fitness: "+ this.fitness);
+        this.fitness = 0;
+        for (int j = 1; j < mat.length; j++) {
+            this.fitness += mat[this.genotipo[j - 1]][this.genotipo[j]];
+            System.out.println("Sumado: " + mat[this.genotipo[j - 1]][this.genotipo[j]]);
+
+        }
+        this.fitness += mat[this.genotipo[0]][this.genotipo[mat.length - 1]];
+        System.out.println("Sumado: " + mat[this.genotipo[0]][this.genotipo[mat.length - 1]]);
+
+        System.out.println("Fitness: " + this.fitness);
     }
 
     public void calcularFenotipo() {
-            
+
     }
 
     private void inicializarAleatoriamente(int n) {
@@ -85,9 +87,14 @@ public class IndividuoTCP {
                 }
             }
         }
-
+ System.out.print("Genotipo: ");
         for (int i = 0; i < n; i++) {
-            System.out.println(this.genotipo[i]);
+            if (i < n-1) {
+                System.out.print(this.genotipo[i] + ",");
+            } else {
+                System.out.println( this.genotipo[i]);
+
+            }
         }
 
     }
@@ -112,9 +119,9 @@ public class IndividuoTCP {
     }
 
     public static void main(String args[]) {
-  MatrizDist md = new MatrizDist(8);
+        MatrizDist md = new MatrizDist(8);
         md.imprimirMat();
-        IndividuoTCP i = new IndividuoTCP(8,md.Matriz);
+        IndividuoTCP i = new IndividuoTCP(8, md.Matriz);
 
         //System.out.println("Prueba #" + i + ": ");
 //            Generaciones gen1 = new Generaciones(200,.2,400,25);
