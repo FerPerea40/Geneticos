@@ -22,9 +22,9 @@ public class CrearArchivo {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-                File fichero2 = new File("datos_" + num_G + "_" + pMuta + "_" + tamPob + "_" + tamg + ".txt");
+                File fichero2 = new File("datos_" + tamPob + "_" + tamg + ".txt");
             if (!fichero2.exists()) {
-                fichero = new FileWriter("datos_" + num_G + "_" + pMuta + "_" + tamPob + "_" + tamg + ".txt");
+                fichero = new FileWriter("datos_" + tamPob + "_" + tamg + ".txt");
 
                 pw = new PrintWriter(fichero);
 
@@ -37,13 +37,13 @@ public class CrearArchivo {
                 }
                 System.out.println(fichero2 + " Creado...");
             } else {
-                System.out.println("Ya existe una versión de " + fichero2);
+           //     System.out.println("Ya existe una versión de " + fichero2);
                 LeerArchivo la = new LeerArchivo();
                 Poblacion existe = new Poblacion(la.tokenizarDataSet(num_G, pMuta, tamPob, tamg));
                 Poblacion nueva = new Poblacion(poblacion);
-                    System.out.println("exites = "+ existe.getFitnessTotal()+" nueva: "+nueva.getFitnessTotal());
+                    System.out.println("Fitness de Datos Existentes = "+ existe.getFitnessTotal()+" Fitness de Datos Probables: "+nueva.getFitnessTotal());
                 if (nueva.getFitnessTotal() <= existe.getFitnessTotal()) {
-                    fichero = new FileWriter("datos_" + num_G + "_" + pMuta + "_" + tamPob + "_" + tamg + ".txt");
+                    fichero = new FileWriter("datos_" + tamPob + "_" + tamg + ".txt");
 
                     pw = new PrintWriter(fichero);
 

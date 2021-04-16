@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Damas;
+package TCP;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 /**
  *
  * @author Dell
  */
-public class Individuo {
+public class IndividuoTCP {
 
     private int genotipo[];
     private int[] fenotipo;
@@ -41,91 +43,57 @@ public class Individuo {
         this.fitness = fitness;
     }
 
-    public Individuo(int n) {
+    public IndividuoTCP(int n, int[][] mat) {
         this.genotipo = new int[n];
         inicializarAleatoriamente(n);
-        calcularFitness();
+        calcularFitness(mat);
     }
 
-    public Individuo(int aux[]) {
+    public IndividuoTCP(int aux[],int[][] mat) {
         this.genotipo = aux.clone();
-        calcularFitness();
+        calcularFitness(mat);
     }
 
-    public void calcularFitness() {
-        calcularFenotipo();
-
+    public void calcularFitness(int[][] mat) {
+        this.fitness=0;
+          for(int j=1;j<mat.length;j++){
+             this.fitness += mat[this.genotipo[j-1]][this.genotipo[j]];
+             System.out.println("Sumado: "+mat[this.genotipo[j-1]][this.genotipo[j]]);
+     
+       }
+          this.fitness+=mat[this.genotipo[0]][this.genotipo[mat.length-1]];
+       System.out.println("Fitness: "+ this.fitness);
     }
 
     public void calcularFenotipo() {
-
-        numHorizontales();
-        numDiagonales1();
-        numDiagonales2();
-
+            
     }
 
     private void inicializarAleatoriamente(int n) {
-        Random ran = new Random();
-        for (int x = 0; x < this.genotipo.length; x++) {
-            this.genotipo[x] = ran.nextInt(n);
-        }
-    }
-
-    public void numHorizontales() {
-        for (int i = 0; i < genotipo.length; i++) {
-            for (int j = i + 1; j < genotipo.length; j++) {
-                if (i != j) {
-                    if (genotipo[i] == genotipo[j]) {
-                        this.fitness += 2;
-                    }
-                }
-            }
-
-        }
-    }
-
-    public void numDiagonales1() {
-        for (int i = 0; i < genotipo.length; i++) {
-            for (int j = i + 1; j < genotipo.length; j++) {
-                if (i != j) {
-                    if (this.genotipo[i] - i == this.genotipo[j] - j) {
-                        this.fitness += 2;
-                    }
+        Set<Integer> generados = new HashSet<>();
+        Random rnd = new Random();
+        for (int i = 0; i < n; i++) {
+            int aleatorio = -1;
+            boolean generado = false;
+            while (!generado) {
+                int posible = (int) (Math.random() * (n - 0) + 0);;
+                if (!generados.contains(posible)) {
+                    generados.add(posible);
+                    this.genotipo[i] = posible;
+                    aleatorio = posible;
+                    generado = true;
                 }
             }
         }
-    }
 
-    public void numDiagonales2() {
-        for (int i = 0; i < genotipo.length; i++) {
-            for (int j = i + 1; j < genotipo.length; j++) {
-                if (i != j) {
-                    if (this.genotipo[i] + i == this.genotipo[j] + j) {
-                        this.fitness += 2;
-                    }
-                }
-            }
-
+        for (int i = 0; i < n; i++) {
+            System.out.println(this.genotipo[i]);
         }
+
     }
 
     public void calcularFit() {
         this.fitness = 0;
-
-        for (int i = 0; i < genotipo.length; i++) {
-            for (int j = i + 1; j < genotipo.length; j++) {
-                int a = this.genotipo[i];
-                int b = this.genotipo[j];
-                int auxi = this.genotipo[i] - i;
-                int auxj = this.genotipo[j] - j;
-                int aux2i = this.genotipo[i] + i;
-                int aux2j = this.genotipo[j] + j;
-                if (a == b || auxi == auxj || aux2i == aux2j) {
-                    this.fitness += 2;
-                }
-            }
-        }
 
     }
 
@@ -144,17 +112,11 @@ public class Individuo {
     }
 
     public static void main(String args[]) {
+  MatrizDist md = new MatrizDist(8);
+        md.imprimirMat();
+        IndividuoTCP i = new IndividuoTCP(8,md.Matriz);
 
-        // Individuo i =  new Individuo();
-       
-            //System.out.println("Prueba #" + i + ": ");
-            Generaciones gen = new Generaciones(100, .3, 50, 10);
-            gen.evolucionar();
-            Grafica graf = new Grafica("Comportamiento (100,.5,100,10)", "Generación", "Fitness");
-            graf.crearSerie("Datos  : (100,.5,100,110)", gen.getGens());
-            graf.mostrarGrafica();
-        
-
+        //System.out.println("Prueba #" + i + ": ");
 //            Generaciones gen1 = new Generaciones(200,.2,400,25);
 //            gen1.evolucionar();
 //            Grafica graf1 = new Grafica("Comportamiento (200,.2,400,25)","Generación","Fitness");

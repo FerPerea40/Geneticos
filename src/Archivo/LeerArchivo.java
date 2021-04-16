@@ -39,7 +39,7 @@ public class LeerArchivo {
           //  if (abre != null) {
              //  FileReader fr = new FileReader("C:\\Users\\carli\\Desktop\\iris.data"); 
 
-                FileReader archivos = new FileReader("datos_" + num_G + "_" + pMuta + "_" + tamPob + "_" + tamg + ".txt");
+                FileReader archivos = new FileReader("datos_" + tamPob + "_" + tamg + ".txt");
                 BufferedReader lee = new BufferedReader(archivos);
 
                 while ((aux = lee.readLine()) != null) {
