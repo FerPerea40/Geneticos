@@ -87,4 +87,20 @@ public class Poblacion {
    }
    return fitT;
    }
+   
+   public void mostrarPob(){
+       System.out.println("HOLA"+poblacion.size());
+   for(int z=0;z<poblacion.size();z++){
+     String aux = "Genotipo: ";
+        for (int i = 0; i < poblacion.get(z).getGenotipo().length; i++) {
+            aux += poblacion.get(z).getGenotipo()[i] + ",";
+            if (i == poblacion.get(z).getGenotipo().length - 1) {
+                aux += poblacion.get(z).getGenotipo()[i];
+
+            }
+        }
+        aux += " Fenotipo => " + poblacion.get(z).getFitness();
+        System.out.println(aux);
+   }
+   }
 }
