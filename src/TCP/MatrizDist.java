@@ -13,14 +13,14 @@ public class MatrizDist {
 
     int[][] Matriz;
 
-    public MatrizDist(int n) {
+    public MatrizDist(int n, int Mdist) {
       this.Matriz = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                     if(i == j ){
                     Matriz[i][j] = 0;
                     }else{
-                        int num = (int) (Math.random()*(10 - 1)+ 1);
+                        int num = (int) (Math.random()*(Mdist - 1)+ 1);
                     Matriz[i][j] = num;
                     Matriz[j][i] = num;
                     }
@@ -33,6 +33,10 @@ public class MatrizDist {
             this.Matriz = Mat;
     
     
+    }
+
+    public MatrizDist() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void imprimirMat(){
@@ -54,7 +58,7 @@ public class MatrizDist {
     
     }
 public static void main(String args[]){
-        MatrizDist md = new MatrizDist(8);
+        MatrizDist md = new MatrizDist(8,5);
         md.imprimirMat();
 }
 }

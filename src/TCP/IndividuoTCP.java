@@ -18,6 +18,9 @@ public class IndividuoTCP {
     private int genotipo[];
     private int[] fenotipo;
     private long fitness;
+    private int[][] matriz;
+    IndividuoTCP() {
+    }
 
     public int[] getGenotipo() {
         return genotipo;
@@ -43,26 +46,42 @@ public class IndividuoTCP {
         this.fitness = fitness;
     }
 
-    public IndividuoTCP(int n, int[][] mat) {
+       public IndividuoTCP(int n) {
         this.genotipo = new int[n];
         inicializarAleatoriamente(n);
-        calcularFitness(mat);
+    }
+            public IndividuoTCP(int [][] matriz) {
+        this.matriz = matriz;
+    }
+              public IndividuoTCP(IndividuoTCP ind) {
+                  this.fitness = ind.fitness;
+                  this.genotipo = ind.genotipo;
+                  this.matriz = ind.matriz;
+    }
+    public IndividuoTCP(int n, int[][] mat) {
+        this.genotipo = new int[n];
+        this.matriz = mat;
+        inicializarAleatoriamente(n);
+        calcularFitness();
     }
 
     public IndividuoTCP(int aux[], int[][] mat) {
         this.genotipo = aux.clone();
-        calcularFitness(mat);
+        this.matriz = mat;
+        calcularFitness();
     }
-
-    public void calcularFitness(int[][] mat) {
+   public IndividuoTCP(int aux[]) {
+        this.genotipo = aux.clone();
+    }
+    public void calcularFitness() {
         this.fitness = 0;
-        for (int j = 1; j < mat.length; j++) {
-            this.fitness += mat[this.genotipo[j - 1]][this.genotipo[j]];
-            System.out.println("Sumado: " + mat[this.genotipo[j - 1]][this.genotipo[j]]);
+        for (int j = 1; j < this.matriz.length; j++) {
+            this.fitness += this.matriz[this.genotipo[j - 1]][this.genotipo[j]];
+            System.out.println("Sumado: " + this.matriz[this.genotipo[j - 1]][this.genotipo[j]]);
 
         }
-        this.fitness += mat[this.genotipo[0]][this.genotipo[mat.length - 1]];
-        System.out.println("Sumado: " + mat[this.genotipo[0]][this.genotipo[mat.length - 1]]);
+        this.fitness += this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]];
+        System.out.println("Sumado: " + this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]]);
 
         System.out.println("Fitness: " + this.fitness);
     }
@@ -103,6 +122,27 @@ public class IndividuoTCP {
         this.fitness = 0;
 
     }
+    public boolean validar(){
+    for(int i = 0;i<genotipo.length;i++){
+      for(int j = 0;j<genotipo.length;j++){
+                if(i!=j && genotipo[i] == genotipo[j]){
+                 return false;
+                }
+                
+    }
+    }
+    return true;
+    }
+     public void imprimirIndividuo(){
+         for(int i=0;i<genotipo.length;i++){
+         if(i!=genotipo.length-1){
+         System.out.print(genotipo[i]+",");
+         }else{
+                  System.out.println(genotipo[i]);
+
+         }
+         }
+     }
 
     @Override
     public String toString() {
@@ -119,7 +159,7 @@ public class IndividuoTCP {
     }
 
     public static void main(String args[]) {
-        MatrizDist md = new MatrizDist(8);
+        MatrizDist md = new MatrizDist(8,5);
         md.imprimirMat();
         IndividuoTCP i = new IndividuoTCP(8, md.Matriz);
 
