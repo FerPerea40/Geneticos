@@ -7,6 +7,7 @@ package Archivo;
 
 import Damas.Individuo;
 import Damas.Poblacion;
+import TCP.IndividuoTCP;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -81,6 +82,56 @@ public class LeerArchivo {
         return poblacion;
     }
      
+     public  static  LinkedList <IndividuoTCP> tokenizarDataSet2(int num_G, double pMuta, int tamPob, int tamg) throws IOException{
+    // ventana para abrir el txt
+    
+     String texto, aux;
+     LinkedList<String> lista = new LinkedList();
+     LinkedList<IndividuoTCP> poblacion = new LinkedList<>();
+        try {
+
+
+                FileReader archivos = new FileReader("datos_" + tamPob + "_" + tamg + ".txt");
+                BufferedReader lee = new BufferedReader(archivos);
+
+                while ((aux = lee.readLine()) != null) {
+                    texto = aux;
+                    lista.add(texto);
+                }
+                lee.close();
+                //System.out.println(lista.size());
+
+                ArrayList<String> lista2 = new ArrayList<>();
+//                String clase = "";
+//                String claseComp="";
+              for (int i = 0; i < lista.size(); i++) {
+                   StringTokenizer st = new StringTokenizer(lista.get(i), ",");
+
+                    while (st.hasMoreTokens()) {
+                       lista2.add(st.nextToken());
+                   }
+
+                    int[] gen = new int[tamg];
+
+                    for (int x = 0; x <tamg; x++) {
+                        gen[x] = Integer.parseInt(lista2.get(x));
+                    }
+
+                          poblacion.add(new IndividuoTCP(gen));
+                
+                   lista2.clear();
+               }
+
+  //          }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex + ""
+                    + "\nNo se ha encontrado el archivo",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+            return null;
+        }
+       
+        return poblacion;
+    }
 //     public static void main(String args[]) throws IOException{
 //      
 //         LeerArchivo la = new LeerArchivo();

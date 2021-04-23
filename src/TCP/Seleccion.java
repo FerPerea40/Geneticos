@@ -12,14 +12,14 @@ import java.util.Random;
  * @author Dell
  */
 public class Seleccion {
-     public static IndividuoTCP seleccionAleatoria(Poblacion pob) {
+     public static IndividuoTCP seleccionAleatoria(PoblacionTCP pob, int[][]mat) {
         Random ran = new Random();
         int pos = ran.nextInt(pob.getPoblacion().size());
 
-        return new IndividuoTCP(pob.getPoblacion().get(pos).getGenotipo());
+        return new IndividuoTCP(pob.getPoblacion().get(pos).getGenotipo(),mat);
     }
 
-    public IndividuoTCP seleccionRuleta(Poblacion pob) {
+    public IndividuoTCP seleccionRuleta(PoblacionTCP pob) {
         int sumatotal = pob.getFitnessTotal();
         double[] probabilidad = new double[pob.getPoblacion().size()];
         double[] probacumulada = new double[pob.getPoblacion().size()];

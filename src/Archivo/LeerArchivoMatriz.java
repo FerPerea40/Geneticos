@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class LeerArchivoMatriz {
     
-      public MatrizDist tokenizarDataSet( int tam, int Mdist) throws IOException{
+      public static int[][] tokenizarDataSet4(int tam, int Mdist) throws IOException{
     
      String texto, aux;
      LinkedList<String> lista = new LinkedList();
@@ -43,15 +43,9 @@ public class LeerArchivoMatriz {
                     while (st.hasMoreTokens()) {
                        lista2.add(st.nextToken());
                    }
-                    
-                   
-
-                    for (int x = 0; x <tam; x++) {
-                        matriz[i][x] = Integer.parseInt(lista2.get(x));
+                     for (int x = 0; x <tam; x++) {
+                       matriz[i][x] = Integer.parseInt(lista2.get(x));
                     }
-
-                          
-                
                    lista2.clear();
                }
 
@@ -62,8 +56,6 @@ public class LeerArchivoMatriz {
                     "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
             return null;
         }
-            MatrizDist mat = new MatrizDist(matriz);
-
-        return mat;
+            return matriz;
     }
 }

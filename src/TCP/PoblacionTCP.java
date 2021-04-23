@@ -12,35 +12,35 @@ import java.util.Random;
  *
  * @author Dell
  */
-public class Poblacion {
+public class PoblacionTCP {
         
  private LinkedList<IndividuoTCP> poblacion;
     private int i;
     private int tam;
 
-    public Poblacion(int i,int tam){
+    public PoblacionTCP(int i,int tam){
         this.i = i;
         this.tam=tam;
         this.poblacion = new LinkedList<>();
         inicializarAleatorimente();
     }
 
-    public Poblacion(LinkedList<IndividuoTCP> muestra){
+    public PoblacionTCP(LinkedList<IndividuoTCP> muestra, int[][]Matriz){
         this.poblacion = new LinkedList<>();
         for(int x=0;x<muestra.size();x++){
-            this.poblacion.add(new IndividuoTCP(muestra.get(x).getGenotipo()));
+            this.poblacion.add(new IndividuoTCP(muestra.get(x).getGenotipo(),Matriz));
         }
     }
 
-      public Poblacion(){
+      public PoblacionTCP(){
         this.poblacion = new LinkedList<>();
         
     }
 
-    public Poblacion(Poblacion n){
+    public PoblacionTCP(PoblacionTCP n, int[][] Matriz){
         this.poblacion = new LinkedList<>();
         for(IndividuoTCP aux: n.getPoblacion()){
-            this.poblacion.add(new IndividuoTCP(aux.getGenotipo()));
+            this.poblacion.add(new IndividuoTCP(aux.getGenotipo(),Matriz));
 
         }
 
@@ -89,15 +89,16 @@ public class Poblacion {
    }
    
    public void mostrarPob(){
-       System.out.println("HOLA"+poblacion.size());
+       System.out.println("# de Individuos : "+poblacion.size());
    for(int z=0;z<poblacion.size();z++){
      String aux = "Genotipo: ";
         for (int i = 0; i < poblacion.get(z).getGenotipo().length; i++) {
-            aux += poblacion.get(z).getGenotipo()[i] + ",";
-            if (i == poblacion.get(z).getGenotipo().length - 1) {
-                aux += poblacion.get(z).getGenotipo()[i];
+           
+            if (i <= poblacion.get(z).getGenotipo().length - 1) {
+                 aux += poblacion.get(z).getGenotipo()[i] + ",";
+                
 
-            }
+            }else{aux += poblacion.get(z).getGenotipo()[i];}
         }
         aux += " Fenotipo => " + poblacion.get(z).getFitness();
         System.out.println(aux);

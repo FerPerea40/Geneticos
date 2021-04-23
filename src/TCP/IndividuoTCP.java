@@ -5,6 +5,8 @@
  */
 package TCP;
 
+import Damas.Grafica;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -53,10 +55,10 @@ public class IndividuoTCP {
             public IndividuoTCP(int [][] matriz) {
         this.matriz = matriz;
     }
-              public IndividuoTCP(IndividuoTCP ind) {
+              public IndividuoTCP(IndividuoTCP ind, int[][] matriz) {
                   this.fitness = ind.fitness;
                   this.genotipo = ind.genotipo;
-                  this.matriz = ind.matriz;
+                  this.matriz = matriz;
     }
     public IndividuoTCP(int n, int[][] mat) {
         this.genotipo = new int[n];
@@ -77,13 +79,10 @@ public class IndividuoTCP {
         this.fitness = 0;
         for (int j = 1; j < this.matriz.length; j++) {
             this.fitness += this.matriz[this.genotipo[j - 1]][this.genotipo[j]];
-            System.out.println("Sumado: " + this.matriz[this.genotipo[j - 1]][this.genotipo[j]]);
-
-        }
+             }
         this.fitness += this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]];
-        System.out.println("Sumado: " + this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]]);
+        // System.out.println("Fitnes= "+this.fitness);
 
-        System.out.println("Fitness: " + this.fitness);
     }
 
     public void calcularFenotipo() {
@@ -146,7 +145,7 @@ public class IndividuoTCP {
 
     @Override
     public String toString() {
-        String aux = "Genotipo: ";
+          String aux = "Genotipo: ";
         for (int i = 0; i < genotipo.length; i++) {
             aux += genotipo[i] + ",";
             if (i == genotipo.length - 1) {
@@ -158,17 +157,16 @@ public class IndividuoTCP {
         return aux;
     }
 
-    public static void main(String args[]) {
-        MatrizDist md = new MatrizDist(8,5);
-        md.imprimirMat();
-        IndividuoTCP i = new IndividuoTCP(8, md.Matriz);
-
-        //System.out.println("Prueba #" + i + ": ");
-//            Generaciones gen1 = new Generaciones(200,.2,400,25);
-//            gen1.evolucionar();
-//            Grafica graf1 = new Grafica("Comportamiento (200,.2,400,25)","Generación","Fitness");
-//            graf1.crearSerie("Datos : (200,.2,400,25)",gen1.getGens());
-//            graf1.mostrarGrafica();
+    public static void main(String args[]) throws IOException {
+      
+      // System.out.println("Prueba #" + i + ": ");
+       
+            Generaciones gen1 = new Generaciones(20,.5,5,8,100);
+            gen1.evolucionar();
+           Grafica graf1 = new Grafica("Comportamiento (200,.2,400,25)","Generación","Fitness");
+           graf1.crearSerie("Datos : (200,.2,400,25)",gen1.getGens());
+           graf1.mostrarGrafica();
+            
 //            
 //             Generaciones gen2 = new Generaciones(1000,.2,500,100);
 //            gen2.evolucionar();

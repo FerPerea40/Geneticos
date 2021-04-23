@@ -12,23 +12,19 @@ import java.util.Random;
  * @author Dell
  */
 public class Muta {
-    public static void aplicarMutaAleatoria(IndividuoTCP p){
-        Random ran = new Random();
-        int pos = ran.nextInt(p.getGenotipo().length);
-        int pos2 = ran.nextInt(p.getGenotipo().length);
-        boolean bandera=true;
-        while(bandera){
-        if(pos!=pos2){
-           int guarda = p.getGenotipo()[pos];
-           int guarda2 = p.getGenotipo()[pos2];
-            p.getGenotipo()[pos]= guarda2 ;
-            p.getGenotipo()[pos2]= guarda ;
-            bandera=false;
-        }else{
-         bandera = true;
+    public static void aplicarMutaAleatoria(IndividuoTCP ind){
+         Random ran = new Random();
+        int pos = ran.nextInt(ind.getGenotipo().length);
+        int nuevapos = ran.nextInt(ind.getGenotipo().length);
+        while (pos == nuevapos || pos == 0 || nuevapos==0) {
+             pos = ran.nextInt(ind.getGenotipo().length);
+             nuevapos = ran.nextInt(ind.getGenotipo().length);
         }
-        }
-        p.calcularFit();
+        int aux=ind.getGenotipo()[pos];
+        ind.getGenotipo()[pos] = ind.getGenotipo()[nuevapos];
+        ind.getGenotipo()[nuevapos] = aux;
+        ind.calcularFitness();
+    }
 
     }
 //     public static void main(String args[]) {
@@ -38,4 +34,4 @@ public class Muta {
 //                   it.imprimirIndividuo();
 //
 //     }
-}
+

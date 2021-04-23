@@ -19,6 +19,7 @@ public class CrearArchivoMatriz {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
+            
                 File fichero2 = new File("Matriz_" + tam + "_" + Mdist + ".txt");
             if (!fichero2.exists()) {
                 fichero = new FileWriter("Matriz_" + tam + "_" + Mdist + ".txt");
@@ -33,7 +34,13 @@ public class CrearArchivoMatriz {
                     pw.println();
                 }
                 System.out.println(fichero2 + " Creado...");
+            }else{
+               System.out.println(fichero2 + " Ya exiiste se utilizara el archivo viejo....");
+
+            
             }
+            
+           
 
         } catch (Exception e) {
             e.printStackTrace();

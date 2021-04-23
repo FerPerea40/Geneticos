@@ -5,6 +5,8 @@
  */
 package TCP;
 
+import Archivo.CrearArchivoMatriz;
+
 /**
  *
  * @author Dell
@@ -12,8 +14,10 @@ package TCP;
 public class MatrizDist {
 
     int[][] Matriz;
+    int Mdist;
 
     public MatrizDist(int n, int Mdist) {
+        this.Mdist = Mdist;
       this.Matriz = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -26,14 +30,15 @@ public class MatrizDist {
                     }
             }
         }
-
+          CrearArchivoMatriz c = new CrearArchivoMatriz(Matriz,Matriz.length,Mdist);
     }
     
-    public MatrizDist (int [][] Mat){
+    public MatrizDist (int [][] Mat,int Mdist){
             this.Matriz = Mat;
-    
-    
-    }
+            this.Mdist=Mdist;
+      CrearArchivoMatriz c = new CrearArchivoMatriz(Matriz,Matriz.length,Mdist);
+
+     }
 
     public MatrizDist() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

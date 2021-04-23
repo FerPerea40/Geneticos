@@ -41,19 +41,19 @@ public class Cruza {
             }
             IndividuoTCP aux = new IndividuoTCP(c1,matriz);
             IndividuoTCP aux2 = new IndividuoTCP(c2,matriz);
-                System.out.println("aux");
-                      aux.imprimirIndividuo();
-                System.out.println("aux2");
+                System.out.print("Hijo 1: ");
+                aux.imprimirIndividuo();
+                System.out.print("Hijo 2: ");
                 aux2.imprimirIndividuo();
 
             if (aux.validar() && aux2.validar()) {
                 sigue = false;
 
                 if (aux.getFitness() <= aux2.getFitness()) {
-                    ret = new IndividuoTCP(aux);
+                    ret = new IndividuoTCP(aux,matriz);
 
                 } else {
-                    ret =  new IndividuoTCP(aux2);
+                    ret =  new IndividuoTCP(aux2,matriz);
                 }
 
             } else {
@@ -75,17 +75,15 @@ public class Cruza {
     }
 
     public static void main(String args[]) throws IOException {
-        int[] mask = {0, 1, 0, 1, 1};
-        MatrizDist M  =new MatrizDist(5,5);
-        CrearArchivoMatriz n = new  CrearArchivoMatriz (M.Matriz,M.Matriz.length, 5);
-        LeerArchivoMatriz l = new  LeerArchivoMatriz ();
-
-        MatrizDist t = l.tokenizarDataSet(5,5);
-        IndividuoTCP it = new IndividuoTCP(5,t.Matriz);
-        IndividuoTCP it2 = new IndividuoTCP(5,t.Matriz);
+//
+//        LeerArchivoMatriz l = new  LeerArchivoMatriz ();
+//
+//        MatrizDist t = new MatrizDist( l.tokenizarDataSet4(8,100));
+//        t.imprimirMat();
+//        IndividuoTCP it = new IndividuoTCP(8,t.Matriz);
+//        IndividuoTCP it2 = new IndividuoTCP(8,t.Matriz);
 
 //         it.imprimirIndividuo();
-        Cruza.op_cruza(it, it2, mask, t.Matriz).imprimirIndividuo();
 
     }
 }
