@@ -57,10 +57,10 @@ public class Generaciones {
         gens = new double[num_G];
         for (int g = 0; g < this.num_G; g++) {
             PoblacionTCP nueva = new PoblacionTCP();
-            mejor = Seleccion.seleccionAleatoria(this.pobActual,this.matriz);
+            mejor = Seleccion.seleccionRuleta(this.pobActual,this.matriz);
             for (int i = 0; i < this.tamPob; i++) {
-                IndividuoTCP madre = Seleccion.seleccionAleatoria(this.pobActual,this.matriz);
-                IndividuoTCP padre = Seleccion.seleccionAleatoria(this.pobActual,this.matriz);
+                IndividuoTCP madre = Seleccion.seleccionRuleta(this.pobActual,this.matriz);
+                IndividuoTCP padre = Seleccion.seleccionRuleta(this.pobActual,this.matriz);
                 IndividuoTCP hijo = Cruza.op_cruza(madre, padre, mascara,this.matriz);
 
                 if (Math.random() < this.pMuta) {

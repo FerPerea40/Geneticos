@@ -41,11 +41,10 @@ public class Cruza {
             }
             IndividuoTCP aux = new IndividuoTCP(c1,matriz);
             IndividuoTCP aux2 = new IndividuoTCP(c2,matriz);
-                System.out.print("Hijo 1: ");
-                aux.imprimirIndividuo();
-                System.out.print("Hijo 2: ");
-                aux2.imprimirIndividuo();
-
+//               System.out.print("Hijo 1: ");
+//                aux.imprimirIndividuo();
+//                System.out.print("Hijo 2: ");
+//                aux2.imprimirIndividuo();
             if (aux.validar() && aux2.validar()) {
                 sigue = false;
 
@@ -55,18 +54,16 @@ public class Cruza {
                 } else {
                     ret =  new IndividuoTCP(aux2,matriz);
                 }
-
             } else {
-                System.out.println("No jalo cambio de mask");
+               // System.out.println("No jalo cambio de mask");
                 Random ran = new Random();
                 for (int x = 0; x < mask.length; x++) {
                     mask[x] = ran.nextInt(2);
-                    if (x != mask.length - 1) {
-                        System.out.print(mask[x] + ",");
-                    } else {
-                        System.out.println(mask[x]);
-
-                    }
+//                    if (x != mask.length - 1) {
+//                        System.out.print(mask[x] + ",");
+//                    } else {
+//                        System.out.println(mask[x]);
+//                    }
                 }
                 sigue = true;
             }

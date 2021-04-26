@@ -19,7 +19,7 @@ public class Seleccion {
         return new IndividuoTCP(pob.getPoblacion().get(pos).getGenotipo(),mat);
     }
 
-    public IndividuoTCP seleccionRuleta(PoblacionTCP pob) {
+    public static IndividuoTCP seleccionRuleta(PoblacionTCP pob, int [][] mat) {
         int sumatotal = pob.getFitnessTotal();
         double[] probabilidad = new double[pob.getPoblacion().size()];
         double[] probacumulada = new double[pob.getPoblacion().size()];
@@ -41,6 +41,6 @@ public class Seleccion {
                 break;
                 }
         }
-        return pob.getPoblacion().get(pos);
+        return  new IndividuoTCP(pob.getPoblacion().get(pos).getGenotipo(),mat);
     }
 }

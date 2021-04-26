@@ -5,8 +5,10 @@
  */
 package Archivo;
 
+import TCP.MatrizDist;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -28,8 +30,11 @@ public class CrearArchivoMatriz {
 
                 for (int i = 0; i < matriz.length; i++) {
                     for (int j = 0; j < matriz.length; j++) {
+                        if(j < matriz.length-1){
                         pw.print(matriz[i][j] + ",");
-
+                        }else{
+                         pw.print(matriz[i][j]);
+                        }
                     }
                     pw.println();
                 }
@@ -57,4 +62,6 @@ public class CrearArchivoMatriz {
         }
 
     }
+    
+   
 }

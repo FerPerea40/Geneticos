@@ -16,7 +16,7 @@ public class Muta {
          Random ran = new Random();
         int pos = ran.nextInt(ind.getGenotipo().length);
         int nuevapos = ran.nextInt(ind.getGenotipo().length);
-        while (pos == nuevapos || pos == 0 || nuevapos==0) {
+        while (pos == nuevapos ) {
              pos = ran.nextInt(ind.getGenotipo().length);
              nuevapos = ran.nextInt(ind.getGenotipo().length);
         }
