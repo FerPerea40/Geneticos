@@ -5,6 +5,7 @@
  */
 package SAT;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -13,10 +14,10 @@ import java.util.Random;
  */
 public class SeleccionSAT {
     
-  public static IndividuoSAT seleccionAleatoria(PoblacionSAT pob){
+  public static IndividuoSAT seleccionAleatoria(PoblacionSAT pob,LinkedList<int[]> m){
         Random ran = new Random();
        int pos = ran.nextInt(pob.getPoblacionSAT().size());
 
-       return new IndividuoSAT(pob.getPoblacionSAT().get(pos).getGenotipo(),pob.getPoblacionSAT().get(pos).getMuestras()); 
+       return new IndividuoSAT(pob.getPoblacionSAT().get(pos).getGenotipo(),m); 
     }
 }

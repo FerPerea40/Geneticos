@@ -5,6 +5,7 @@
  */
 package SAT;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Random;
  * @author Dell
  */
 public class MutaSAT {
-     public static void aplicarMutaAleatoria(IndividuoSAT p){
+     public static void aplicarMutaAleatoria(IndividuoSAT p,LinkedList<int[]> m){
         Random ran = new Random();
         int pos = ran.nextInt(p.getGenotipo().length);
         if(p.getGenotipo()[pos]==1){
@@ -21,7 +22,7 @@ public class MutaSAT {
         }else {
             p.getGenotipo()[pos]=1;
         }
-        p.calcularFitness();
+        p.calcularFitness(m);
 
     }
 }

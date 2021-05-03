@@ -19,20 +19,13 @@ public class PoblacionSAT {
     private int tam;
     private LinkedList<int[]> muestras;
 
-    public LinkedList<int[]> getMuestras() {
-        return muestras;
-    }
-
-    public void setMuestras(LinkedList<int[]> muestras) {
-        this.muestras = muestras;
-    }
-
+ 
     public PoblacionSAT(int i, int tam, LinkedList<int[]> m) {
         this.i = i;
         this.tam = tam;
         this.poblacion = new LinkedList<>();
         this.muestras = m;
-        inicializarAleatorimente();
+        inicializarAleatorimente(m);
     }
 
     public PoblacionSAT(LinkedList<IndividuoSAT> muestra, int i, LinkedList<int[]> m) {
@@ -59,27 +52,16 @@ public class PoblacionSAT {
 
     }
 
-    public void inicializarAleatorimente() {
+    public void inicializarAleatorimente( LinkedList<int[]> m) {
 
         for (int x = 0; x < this.i; x++) {
-            this.poblacion.add(new IndividuoSAT(this.tam, this.muestras));
+            this.poblacion.add(new IndividuoSAT(this.tam,m));
 
         }
 
     }
 
-    public LinkedList<IndividuoSAT> generarMuestraAleatoria(double p) {
-        int c = (int) ((this.i * p) / 100);
-        LinkedList<IndividuoSAT> muestra = new LinkedList<>();
-        int pa = 0;
-        Random ran = new Random();
-        for (int x = 0; x < c; x++) {
-            pa = ran.nextInt(this.i);
-            muestra.add(this.poblacion.get(pa));
 
-        }
-        return muestra;
-    }
 
     public LinkedList<IndividuoSAT> getPoblacionSAT() {
 
