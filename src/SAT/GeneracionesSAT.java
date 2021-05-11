@@ -14,7 +14,7 @@ import java.util.Random;
  *
  * @author Dell
  */
-public class GeneracionesSAT {
+public class GeneracionesSAT extends Thread{
 
     private int num_G;
     private double pMuta;
@@ -23,6 +23,48 @@ public class GeneracionesSAT {
     private LinkedList<int[]> muestras;
     double gens[];
 
+    
+    
+    public double getpMuta() {
+        return pMuta;
+    }
+
+    public void setpMuta(double pMuta) {
+        this.pMuta = pMuta;
+    }
+    public int getNum_G() {
+        return num_G;
+    }
+
+    public void setNum_G(int num_G) {
+        this.num_G = num_G;
+    }
+
+    public PoblacionSAT getPobActual() {
+        return pobActual;
+    }
+
+    public void setPobActual(PoblacionSAT pobActual) {
+        this.pobActual = pobActual;
+    }
+
+    public int getTamPob() {
+        return tamPob;
+    }
+
+    public void setTamPob(int tamPob) {
+        this.tamPob = tamPob;
+    }
+
+    public LinkedList<int[]> getMuestras() {
+        return muestras;
+    }
+
+    public void setMuestras(LinkedList<int[]> muestras) {
+        this.muestras = muestras;
+    }
+
+    
     public double[] getGens() {
         return gens;
     }
@@ -41,6 +83,7 @@ public class GeneracionesSAT {
     }
 
     public void evolucionar() throws IOException {
+        
         int mascara[] = new int[this.pobActual.getPoblacionSAT().get(0).getGenotipo().length];
         Random ran = new Random();
         for (int x = 0; x < mascara.length; x++) {
@@ -57,7 +100,7 @@ public class GeneracionesSAT {
             mejor = new IndividuoSAT(new int[mascara.length], this.muestras);
             
             for (int i = 0; i < this.tamPob; i++) {
-                
+
                 IndividuoSAT madre = SeleccionSAT.seleccionAleatoria(this.pobActual,this.muestras);
                 IndividuoSAT padre = SeleccionSAT.seleccionAleatoria(this.pobActual,this.muestras);
                 IndividuoSAT hijo = CruzaSAT.op_cruza(madre, padre, mascara, this.muestras);
@@ -84,19 +127,28 @@ public class GeneracionesSAT {
 
     }
 
+    
+    
     public static void main(String args[]) throws IOException {
 
-        //int num_G,double pMuta,int tamPob,int tamg ,int MaxNum,int NumMuestras,int version
-        int Generaciones = 300;
+         int Generaciones = 3000;
         double p_Muta = .50;
         int tamPob = 1000;
         int tam_Genotipo = 100;
 //        DATOS DE ARCHIVO 3SAT
         int Max_Dist = 100;
         int NumMuestras = 550;
-        int version = 1;
+        int version = 2;
 
         GeneracionesSAT GS = new GeneracionesSAT(Generaciones, p_Muta, tamPob, tam_Genotipo, Max_Dist, NumMuestras, version);
+        
+          Data ch = new Data(GS);
+          ch.setName("Hilo 1");
+          Thread h1 = new Thread(ch);
+          h1.start();
+        
+        //int num_G,double pMuta,int tamPob,int tamg ,int MaxNum,int NumMuestras,int version
+       
         GS.evolucionar();
         Grafica graf1 = new Grafica("Comportamiento (" + Generaciones + "," + p_Muta + "," + tamPob + "," + tam_Genotipo + "," + Max_Dist + ")", "Generación", "Fitness");
         graf1.crearSerie("Datos : (" + Generaciones + "," + p_Muta + "," + tamPob + "," + tam_Genotipo + "," + Max_Dist + ")", GS.getGens());
