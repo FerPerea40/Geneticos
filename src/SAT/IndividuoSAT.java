@@ -55,6 +55,7 @@ public class IndividuoSAT {
         this.genotipo = aux.clone();
         calcularFitness(muestras);
     }
+  
 
     public void calcularFitness(LinkedList<int[]> muestras) {
         this.fitness = 0;
@@ -110,15 +111,24 @@ public class IndividuoSAT {
     }
 
     public double torString() {
-        System.out.println("Genotipo: ");
+     /*   System.out.println("Genotipo: ");
         for (int i = 0; i < this.genotipo.length; i++) {
             System.out.print(this.genotipo[i] + ",");
 
         }
-        System.out.println("\nFenotipo => " + this.fitness);
+        System.out.println("\nFenotipo => " + this.fitness);*/
         return this.fitness;
     }
+  public String tor2String() {
+      String salida="";
+       salida+="Genotipo: ";
+        for (int i = 0; i < this.genotipo.length; i++) {
+           salida+= this.genotipo[i] + ",";
 
+        }
+        salida+="\nFenotipo => " + this.fitness + "\n";
+        return salida;
+    }
     public static void main(String args[]) throws IOException {
         LinkedList<int[]> muestras = Leer3SAT.tokenizarDataSet(100, 550, 1);
         int[] i = {

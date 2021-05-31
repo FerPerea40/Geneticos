@@ -61,6 +61,16 @@ public class PoblacionSAT {
 
     }
 
+        public IndividuoSAT getMejor(){
+        int idMejor = 0;
+        for(int x=1;x<this.poblacion.size();x++){
+            if(this.poblacion.get(x).getFitness()>this.poblacion.get(idMejor).getFitness()){
+            idMejor = x;
+            }
+        }
+     return new IndividuoSAT(this.poblacion.get(idMejor).getGenotipo(),this.muestras);
+       
+    }
 
 
     public LinkedList<IndividuoSAT> getPoblacionSAT() {
