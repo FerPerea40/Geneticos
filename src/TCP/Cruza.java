@@ -22,7 +22,7 @@ public class Cruza {
     public void Cruza() {
     }
 
-    public static IndividuoTCP op_cruza(IndividuoTCP gen1, IndividuoTCP gen2, int[] mask, int[][] matriz) {
+    public static IndividuoTCP op_cruza(IndividuoTCP gen1, IndividuoTCP gen2, int[] mask, int[][] matriz,int[][]matrizi) {
         IndividuoTCP ret = null ;
         boolean sigue = true;
         while (sigue) {
@@ -39,8 +39,8 @@ public class Cruza {
 
                 }
             }
-            IndividuoTCP aux = new IndividuoTCP(c1,matriz);
-            IndividuoTCP aux2 = new IndividuoTCP(c2,matriz);
+            IndividuoTCP aux = new IndividuoTCP(c1,matriz,matrizi);
+            IndividuoTCP aux2 = new IndividuoTCP(c2,matriz,matrizi);
 //               System.out.print("Hijo 1: ");
 //                aux.imprimirIndividuo();
 //                System.out.print("Hijo 2: ");
@@ -49,10 +49,10 @@ public class Cruza {
                 sigue = false;
 
                 if (aux.getFitness() <= aux2.getFitness()) {
-                    ret = new IndividuoTCP(aux,matriz);
+                    ret = new IndividuoTCP(aux,matriz,matrizi);
 
                 } else {
-                    ret =  new IndividuoTCP(aux2,matriz);
+                    ret =  new IndividuoTCP(aux2,matriz,matrizi);
                 }
             } else {
                // System.out.println("No jalo cambio de mask");
@@ -71,16 +71,16 @@ public class Cruza {
         return ret;
     }
 
-    public static void main(String args[]) throws IOException {
+//    public static void main(String args[]) throws IOException {
+////
+////        LeerArchivoMatriz l = new  LeerArchivoMatriz ();
+////
+////        MatrizDist t = new MatrizDist( l.tokenizarDataSet4(8,100));
+////        t.imprimirMat();
+////        IndividuoTCP it = new IndividuoTCP(8,t.Matriz);
+////        IndividuoTCP it2 = new IndividuoTCP(8,t.Matriz);
 //
-//        LeerArchivoMatriz l = new  LeerArchivoMatriz ();
+////         it.imprimirIndividuo();
 //
-//        MatrizDist t = new MatrizDist( l.tokenizarDataSet4(8,100));
-//        t.imprimirMat();
-//        IndividuoTCP it = new IndividuoTCP(8,t.Matriz);
-//        IndividuoTCP it2 = new IndividuoTCP(8,t.Matriz);
-
-//         it.imprimirIndividuo();
-
-    }
+//    }
 }

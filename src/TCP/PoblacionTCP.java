@@ -18,17 +18,17 @@ public class PoblacionTCP {
     private int i;
     private int tam;
 
-    public PoblacionTCP(int i,int tam){
+    public PoblacionTCP(int i,int tam, int[][]Matriz, int [][] Matrizi){
         this.i = i;
         this.tam=tam;
         this.poblacion = new LinkedList<>();
-        inicializarAleatorimente();
+        inicializarAleatorimente( Matriz, Matrizi);
     }
 
-    public PoblacionTCP(LinkedList<IndividuoTCP> muestra, int[][]Matriz){
+    public PoblacionTCP(LinkedList<IndividuoTCP> muestra, int[][]Matriz, int [][] Matrizi){
         this.poblacion = new LinkedList<>();
         for(int x=0;x<muestra.size();x++){
-            this.poblacion.add(new IndividuoTCP(muestra.get(x).getGenotipo(),Matriz));
+            this.poblacion.add(new IndividuoTCP(muestra.get(x).getGenotipo(),Matriz,Matrizi));
         }
     }
 
@@ -37,19 +37,19 @@ public class PoblacionTCP {
         
     }
 
-    public PoblacionTCP(PoblacionTCP n, int[][] Matriz){
+    public PoblacionTCP(PoblacionTCP n, int[][] Matriz,int[][] MatrizI){
         this.poblacion = new LinkedList<>();
         for(IndividuoTCP aux: n.getPoblacion()){
-            this.poblacion.add(new IndividuoTCP(aux.getGenotipo(),Matriz));
+            this.poblacion.add(new IndividuoTCP(aux.getGenotipo(),Matriz,MatrizI));
 
         }
 
     }
 
-    public void inicializarAleatorimente(){
+    public void inicializarAleatorimente( int[][]Matriz, int [][] Matrizi){
 
        for(int x=0; x< this.i; x++){
-            this.poblacion.add(new IndividuoTCP(this.tam));
+            this.poblacion.add(new IndividuoTCP(this.tam, Matriz, Matrizi));
 
        }
 
@@ -78,15 +78,7 @@ public class PoblacionTCP {
     return poblacion;
    }
    
-   public int getFitnessTotal(){
-   int fitT=0;
-   
-   for(int i=0;i<poblacion.size();i++){
-    fitT+=poblacion.get(i).getFitness();
-   
-   }
-   return fitT;
-   }
+  
    
    public void mostrarPob(){
        System.out.println("# de Individuos : "+poblacion.size());

@@ -21,6 +21,7 @@ public class IndividuoTCP {
     private int[] fenotipo;
     private long fitness;
     private int[][] matriz;
+    private int[][] matrizi;
 
     IndividuoTCP() {
     }
@@ -30,7 +31,7 @@ public class IndividuoTCP {
     }
 
     public void setGenotipo(int[] genotipo) {
-        this.genotipo = genotipo;
+        this.genotipo = genotipo.clone(); 
     }
 
     public int[] getFenotipo() {
@@ -38,10 +39,12 @@ public class IndividuoTCP {
     }
 
     public void setFenotipo(int[] fenotipo) {
-        this.fenotipo = fenotipo;
+        this.fenotipo = fenotipo.clone();
     }
 
     public long getFitness() {
+                        calcularFitness();
+
         return fitness;
     }
 
@@ -49,52 +52,64 @@ public class IndividuoTCP {
         this.fitness = fitness;
     }
 
-    public IndividuoTCP(int n) {
-        this.genotipo = new int[n];
-        inicializarAleatoriamente(n);
-    }
+//    public IndividuoTCP(int n,int [][] matriz, int[][] mati) {
+//        this.genotipo = new int[n];
+//        this.matriz = matriz;
+//        this.matrizi = mati;
+//        inicializarAleatoriamente(n);
+//    }
 
-    public IndividuoTCP(int[][] matriz) {
+    public IndividuoTCP(int[][] matriz,int[][] mati) {
         this.matriz = matriz;
+                this.matrizi = mati;
+
+                calcularFitness();
+
     }
 
-    public IndividuoTCP(IndividuoTCP ind, int[][] matriz) {
+    public IndividuoTCP(IndividuoTCP ind, int[][] matriz,int[][] mati) {
         this.fitness = ind.fitness;
-        this.genotipo = ind.genotipo;
+        this.genotipo = ind.genotipo.clone();
         this.matriz = matriz;
+        this.matrizi = mati;
+        calcularFitness();
+
     }
 
-    public IndividuoTCP(int n, int[][] mat) {
+    public IndividuoTCP(int n, int[][] mat,int[][] mati) {
         this.genotipo = new int[n];
         this.matriz = mat;
+        this.matrizi = mati;
         inicializarAleatoriamente(n);
         calcularFitness();
     }
 
-    public IndividuoTCP(int aux[], int[][] mat) {
+    public IndividuoTCP(int aux[], int[][] mat,int[][] mati) {
         this.genotipo = aux.clone();
         this.matriz = mat;
+        this.matrizi = mati;
+
         calcularFitness();
     }
 
-    public IndividuoTCP(int aux[]) {
-        this.genotipo = aux.clone();
-    }
+   // public IndividuoTCP(int aux[]) {
+   //     this.genotipo = aux.clone();
+          //      calcularFitness();
+
+    //}
 
     public void calcularFitness() {
         this.fitness = 0;
         for (int j = 1; j < this.matriz.length; j++) {
-            this.fitness += this.matriz[this.genotipo[j - 1]][this.genotipo[j]];
+            this.fitness += (this.matriz[this.genotipo[j - 1]][this.genotipo[j]] +  this.matrizi[this.genotipo[j - 1]][this.genotipo[j]]  );
         }
-        this.fitness += this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]];
+        this.fitness += (this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]] + this.matrizi[this.genotipo[0]][this.genotipo[this.matriz.length - 1]]);
 
     }
 
-    public void calcularFenotipo() {
 
-    }
 
-    private void inicializarAleatoriamente(int n) {
+    private void inicializarAleatoriamente(int n ) {
         Set<Integer> generados = new HashSet<>();
         Random rnd = new Random();
         for (int i = 0; i < n; i++) {
@@ -119,6 +134,9 @@ public class IndividuoTCP {
 
             }
         }
+        
+              //  calcularFitness();
+
 
     }
       public boolean validar() {
@@ -169,6 +187,7 @@ public class IndividuoTCP {
         int tamPob =           500; 
         int tam_Genotipo =      20; 
         int Max_Dist =          100;
+       // CrearArchivo cr = new CRearARxhivo();
         Generaciones gen1 = new Generaciones(Generaciones, p_Muta, tamPob, tam_Genotipo, Max_Dist);
         gen1.evolucionar();
         Grafica graf1 = new Grafica("Comportamiento ("+Generaciones+","+p_Muta+","+tamPob+","+tam_Genotipo+","+Max_Dist+")", "Generación", "Fitness");
