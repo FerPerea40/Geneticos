@@ -76,7 +76,7 @@ public class CrearArchivo {
         }
 
     }
-  public CrearArchivo(LinkedList<IndividuoTCP> poblacion, int num_G, double pMuta, int tamPob, int tamg,int[][] mat) {
+  public CrearArchivo(LinkedList<IndividuoTCP> poblacion, int num_G, double pMuta, int tamPob, int tamg,int[][] mat,int[][] matrizi) {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
@@ -94,27 +94,28 @@ public class CrearArchivo {
                     pw.println();
                 }
                 System.out.println(fichero2 + " Creado...");
-            } else {
-           //     System.out.println("Ya existe una versión de " + fichero2);
-                LeerArchivo la = new LeerArchivo();
-                PoblacionTCP existe = new PoblacionTCP(la.tokenizarDataSet2(num_G, pMuta, tamPob, tamg),mat);
-                PoblacionTCP nueva = new PoblacionTCP(poblacion, mat);
-                    System.out.println("Fitness de Datos Existentes = "+ existe.getFitnessTotal()+" Fitness de Datos Probables: "+nueva.getFitnessTotal());
-                if (nueva.getFitnessTotal() <= existe.getFitnessTotal()) {
-                    fichero = new FileWriter("datos_" + tamPob + "_" + tamg + ".txt");
-
-                    pw = new PrintWriter(fichero);
-
-                    for (int i = 0; i < poblacion.size(); i++) {
-                        for (int j = 0; j < poblacion.get(0).getGenotipo().length; j++) {
-                            pw.print(poblacion.get(i).getGenotipo()[j] + ",");
-
-                        }
-                        pw.println();
-                    }
-                    System.out.println(fichero2 + " Actualizado...");
-                }
-            }
+            } 
+            //else {
+//           //     System.out.println("Ya existe una versión de " + fichero2);
+//                LeerArchivo la = new LeerArchivo();
+//                PoblacionTCP existe = new PoblacionTCP(la.tokenizarDataSet2(num_G, pMuta, tamPob, tamg),mat,matrizi);
+//                PoblacionTCP nueva = new PoblacionTCP(poblacion, mat,matrizi);
+//                    System.out.println("Fitness de Datos Existentes = "+ existe.getFitnessTotal()+" Fitness de Datos Probables: "+nueva.getFitnessTotal());
+//                if (nueva.getFitnessTotal() <= existe.getFitnessTotal()) {
+//                    fichero = new FileWriter("datos_" + tamPob + "_" + tamg + ".txt");
+//
+//                    pw = new PrintWriter(fichero);
+//
+//                    for (int i = 0; i < poblacion.size(); i++) {
+//                        for (int j = 0; j < poblacion.get(0).getGenotipo().length; j++) {
+//                            pw.print(poblacion.get(i).getGenotipo()[j] + ",");
+//
+//                        }
+//                        pw.println();
+//                    }
+//                    System.out.println(fichero2 + " Actualizado...");
+//                }
+//            }
 
         } catch (Exception e) {
             e.printStackTrace();

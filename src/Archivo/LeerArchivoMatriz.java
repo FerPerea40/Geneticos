@@ -26,7 +26,47 @@ public class LeerArchivoMatriz {
      LinkedList<String> lista = new LinkedList();
       int[][] matriz = new int[tam][tam];
         try {
-                FileReader archivos = new FileReader("Matriz_" + tam + "_" + Mdist + ".txt");
+                FileReader archivos = new FileReader("MatricesTSP_Matriz_" + tam + "_" + Mdist + ".txt");
+                BufferedReader lee = new BufferedReader(archivos);
+
+                while ((aux = lee.readLine()) != null) {
+                    texto = aux;
+                    lista.add(texto);
+                }
+                lee.close();
+
+                ArrayList<String> lista2 = new ArrayList<>();
+
+              for (int i = 0; i < lista.size(); i++) {
+                   StringTokenizer st = new StringTokenizer(lista.get(i), ",");
+
+                    while (st.hasMoreTokens()) {
+                       lista2.add(st.nextToken());
+                   }
+                     for (int x = 0; x <tam; x++) {
+                       matriz[i][x] = Integer.parseInt(lista2.get(x));
+                    }
+                   lista2.clear();
+               }
+
+  //          }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex + ""
+                    + "\nNo se ha encontrado el archivo",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+            return null;
+        }
+            return matriz;
+    }
+      
+      
+       public static int[][] tokenizarDataSet5(int tam, int Mdist) throws IOException{
+    
+     String texto, aux;
+     LinkedList<String> lista = new LinkedList();
+      int[][] matriz = new int[tam][tam];
+        try {
+                FileReader archivos = new FileReader("MatricesTSP_Matrizi_" + tam + "_" + Mdist + ".txt");
                 BufferedReader lee = new BufferedReader(archivos);
 
                 while ((aux = lee.readLine()) != null) {

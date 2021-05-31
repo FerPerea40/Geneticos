@@ -82,7 +82,7 @@ public class LeerArchivo {
         return poblacion;
     }
      
-     public  static  LinkedList <IndividuoTCP> tokenizarDataSet2(int num_G, double pMuta, int tamPob, int tamg) throws IOException{
+     public  static  LinkedList <IndividuoTCP> tokenizarDataSet2(int num_G, double pMuta, int tamPob, int tamg,int [][] matriz,int[][]matrizi) throws IOException{
     // ventana para abrir el txt
     
      String texto, aux;
@@ -117,7 +117,7 @@ public class LeerArchivo {
                         gen[x] = Integer.parseInt(lista2.get(x));
                     }
 
-                          poblacion.add(new IndividuoTCP(gen));
+                          poblacion.add(new IndividuoTCP(gen,matriz,matrizi));
                 
                    lista2.clear();
                }
