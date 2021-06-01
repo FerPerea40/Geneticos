@@ -52,13 +52,6 @@ public class IndividuoTCP {
         this.fitness = fitness;
     }
 
-//    public IndividuoTCP(int n,int [][] matriz, int[][] mati) {
-//        this.genotipo = new int[n];
-//        this.matriz = matriz;
-//        this.matrizi = mati;
-//        inicializarAleatoriamente(n);
-//    }
-
     public IndividuoTCP(int[][] matriz,int[][] mati) {
         this.matriz = matriz;
                 this.matrizi = mati;
@@ -92,18 +85,14 @@ public class IndividuoTCP {
         calcularFitness();
     }
 
-   // public IndividuoTCP(int aux[]) {
-   //     this.genotipo = aux.clone();
-          //      calcularFitness();
-
-    //}
-
-    public void calcularFitness() {
+     public void calcularFitness() {
         this.fitness = 0;
         for (int j = 1; j < this.matriz.length; j++) {
-            this.fitness += (this.matriz[this.genotipo[j - 1]][this.genotipo[j]] +  this.matrizi[this.genotipo[j - 1]][this.genotipo[j]]  );
+            this.fitness += (0.5*this.matriz[this.genotipo[j - 1]][this.genotipo[j]] +
+                    (0.5* (this.matriz[this.genotipo[j - 1]][this.genotipo[j]]) *this.matrizi[this.genotipo[j - 1]][this.genotipo[j]]  ));
         }
-        this.fitness += (this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]] + this.matrizi[this.genotipo[0]][this.genotipo[this.matriz.length - 1]]);
+        this.fitness += (0.5*this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]] +
+                0.5*(this.matriz[this.genotipo[0]][this.genotipo[this.matriz.length - 1]] *  this.matrizi[this.genotipo[0]][this.genotipo[this.matriz.length - 1]]));
 
     }
 
@@ -183,8 +172,8 @@ public class IndividuoTCP {
         // System.out.println("Prueba #" + i + ": ");
         
         int Generaciones =     15000;
-        double p_Muta =         .5;
-        int tamPob =           500; 
+        double p_Muta =         .67;
+        int tamPob =           600; 
         int tam_Genotipo =      20; 
         int Max_Dist =          100;
        // CrearArchivo cr = new CRearARxhivo();
