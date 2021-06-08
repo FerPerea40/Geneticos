@@ -17,7 +17,7 @@ public class PoblacionSAT {
     private LinkedList<IndividuoSAT> poblacion;
     private int i;
     private int tam;
-    private LinkedList<int[]> muestras;
+     LinkedList<int[]> muestras;
 
  
     public PoblacionSAT(int i, int tam, LinkedList<int[]> m) {

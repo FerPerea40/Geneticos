@@ -5,7 +5,6 @@
  */
 package SAT;
 
-import Damas.Grafica;
 import java.io.IOException;
 
 /**
@@ -16,11 +15,11 @@ public class Principal {
     
     public static void main(String[] args) throws IOException {
 
-        Data frame = new Data();
-        frame.setVisible(true);
+    GestorGeneticos GG = new GestorGeneticos(2);
     
      
         
     }
+    
     
 }

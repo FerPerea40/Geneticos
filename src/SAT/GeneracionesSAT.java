@@ -70,7 +70,8 @@ public class GeneracionesSAT implements Runnable {
     }
 
     public void setPobActual(PoblacionSAT pobActual) {
-        this.pobActual = pobActual;
+        this.pobActual= new PoblacionSAT(pobActual,pobActual.muestras);
+        this.tamPob = pobActual.getPoblacionSAT().size();
     }
 
     public int getTamPob() {

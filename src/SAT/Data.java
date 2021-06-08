@@ -35,8 +35,17 @@ public class Data extends javax.swing.JFrame {
         this.jTextArea1.setText(salida+"\n");
     }
 
-   
-    public Data() throws IOException {
+    public JTextField getjTextField2() {
+        return jTextField2;
+    }
+
+    public void setjTextField2(String jTextField2) {
+        this.jTextField2.setText(jTextField2);
+    }
+    
+ DataGestor DG;
+   GestorGeneticos GG;
+    public Data(int ident, GestorGeneticos GG) throws IOException {
         initComponents();
         int Generaciones = 3000;
         double p_Muta = .50;
@@ -58,13 +67,14 @@ public class Data extends javax.swing.JFrame {
          jTextField5.setText(String.valueOf(GS.getNumMuestras()));
          jTextField6.setText(String.valueOf(GS.getVersion()));
          jTextField7.setText(String.valueOf(GS.getNum_G()));
-
-          
+          DG= new DataGestor(this.GS,ident);
+          DG.setVisible(true);
+          this.GG = GG;
         // jTextArea1.setText(this.GS.getSalida()+"Hola\n"+this.jTextArea1.getText());
-       
+       this.ident=ident;
         //this.setVisible(true);
     }
-
+int ident;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,6 +105,7 @@ public class Data extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jPanelGrafica = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,6 +208,13 @@ public class Data extends javax.swing.JFrame {
             .addGap(0, 527, Short.MAX_VALUE)
         );
 
+        jButton2.setText("Enviar Datos del GESTOR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,7 +258,9 @@ public class Data extends javax.swing.JFrame {
                                         .addComponent(jRadioButton1)
                                         .addGap(18, 18, 18)
                                         .addComponent(jRadioButton2)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)
+                                .addGap(30, 30, 30)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -281,12 +301,17 @@ public class Data extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jRadioButton2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addComponent(jPanelGrafica, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
@@ -302,6 +327,7 @@ public class Data extends javax.swing.JFrame {
         this.GS.setpMuta(Double.parseDouble(jTextField1.getText()));
         this.GS.setTamPob((int)Double.parseDouble(jTextField2.getText()));
         this.GS.setNum_G((int)Double.parseDouble(jTextField7.getText()));
+        DG.setjTextField8(jTextField2.getText());
          try {
              //  this.GS.setTamg((int)Double.parseDouble(jTextField3.getText()));
              //  this.GS.setMaxNum((int)Double.parseDouble(jTextField4.getText()));
@@ -345,6 +371,13 @@ public class Data extends javax.swing.JFrame {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+               DG.setjTextField8(jTextField2.getText());
+
+            this.GG.intercambiarIndividuos(ident, DG.getdestino());
+            
+    }//GEN-LAST:event_jButton2ActionPerformed
 
       
    
@@ -405,6 +438,7 @@ public class Data extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
