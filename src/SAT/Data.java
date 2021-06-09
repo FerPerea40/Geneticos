@@ -55,7 +55,7 @@ public class Data extends javax.swing.JFrame {
         int Max_Dist = 100;
         int NumMuestras = 550;
         int version = 2;
-
+                this.setTitle("Genético #"+ident);
         GeneracionesSAT GS = new GeneracionesSAT(this,Generaciones, p_Muta, tamPob, tam_Genotipo, Max_Dist, NumMuestras, version);
         this.GS = GS;
         Thread hiloSerie = new Thread(GS);
@@ -375,7 +375,7 @@ int ident;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
                DG.setjTextField8(jTextField2.getText());
 
-            this.GG.intercambiarIndividuos(ident, DG.getdestino());
+            this.GG.intercambiarIndividuos(ident, DG.getdestino(),DG.getjTextField2());
             
     }//GEN-LAST:event_jButton2ActionPerformed
 

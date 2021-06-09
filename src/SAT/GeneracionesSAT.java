@@ -8,6 +8,8 @@ package SAT;
 import Damas.Grafica;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -40,7 +42,42 @@ public class GeneracionesSAT implements Runnable {
     this.b = 
             b ;
     }
-
+    
+    public  LinkedList<IndividuoSAT> getmuestraPob(int nmuestra){
+        LinkedList<IndividuoSAT> ordenada = (LinkedList<IndividuoSAT>) this.pobActual.getPoblacionSAT().clone();
+       Collections.sort(ordenada, new Comparator<IndividuoSAT>() {
+ 
+        @Override
+        public int compare(IndividuoSAT p1, IndividuoSAT p2) {
+            return (int) (p2.getFitness()- p1.getFitness());
+        }
+    });
+        LinkedList<IndividuoSAT> muestras = new  LinkedList<>();
+    for(int i = 0;i<nmuestra;i++){
+    muestras.add(ordenada.get(i));
+    
+    }
+    return muestras;
+    }
+    
+    
+    public  void setmuestraPob( LinkedList<IndividuoSAT> LL){
+        LinkedList<IndividuoSAT> ordenada = (LinkedList<IndividuoSAT>) this.pobActual.getPoblacionSAT().clone();
+       Collections.sort(ordenada, new Comparator<IndividuoSAT>() {
+ 
+        @Override
+        public int compare(IndividuoSAT p1, IndividuoSAT p2) {
+            return (int) (p2.getFitness()- p1.getFitness());
+        }
+    });
+       
+        LinkedList<IndividuoSAT> muestras = new  LinkedList<>();
+    for(int i = this.tamPob-1;i>this.tamPob-LL.size();i--){
+        int r = 0;
+    this.pobActual.getPoblacionSAT().set(i, LL.get(r));
+    r++;
+    }
+    }
     public String getSalida() {
         return salida;
     }

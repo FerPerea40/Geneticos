@@ -24,11 +24,12 @@ public class GestorGeneticos {
         }
     }
     
-    public void intercambiarIndividuos(int origen,int destino){
+    public void intercambiarIndividuos(int origen,int destino, int muestra){
      // el criterio de intercambio es el primero
      Data destinoGen =  this.geneticos.get(destino);
      Data origenGen = this.geneticos.get(origen);
-     destinoGen.GS.setPobActual(origenGen.GS.getPobActual());
+     
+     destinoGen.GS.setmuestraPob(origenGen.GS.getmuestraPob(muestra));
      destinoGen.setjTextField2(""+origenGen.GS.getTamPob());
      destinoGen.DG.setjTextField8(""+origenGen.GS.getTamPob());
     }

@@ -42,6 +42,14 @@ public class DataGestor extends javax.swing.JFrame {
         //this.setVisible(true);
     }
 
+    public int getjTextField2() {
+        return Integer.parseInt(jTextField2.getText());
+    }
+
+    public void setjTextField2(JTextField jTextField2) {
+        this.jTextField2 = jTextField2;
+    }
+
     public JTextField getjTextField8() {
         return jTextField8;
     }
