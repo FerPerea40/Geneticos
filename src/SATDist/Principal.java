@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SAT;
+package SATDist;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -13,10 +15,10 @@ import java.io.IOException;
  */
 public class Principal {
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, RemoteException, NotBoundException {
 
-    GestorGeneticos GG = new GestorGeneticos(1);
-    
+    Data GG = new Data(1);
+    GG.setVisible(true);
      
         
     }
